@@ -4,9 +4,6 @@
  */
 namespace tomk79\pickles2\ampConvert;
 
-use Lullabot\AMP\AMP;
-use Lullabot\AMP\Validate\Scope;
-
 /**
  * AMP Converter class
  */
@@ -23,9 +20,9 @@ class main{
 			$src = $px->bowl()->get_clean( $key );
 
 			// AMP 変換
-			$amp = new AMP();
-			$amp->loadHtml($src);
-			$src = $amp->convertToAmpHtml();
+			$amp = new \tomk79\ampConvert\AMPConverter();
+			$amp->load($src);
+			$src = $amp->convert();
 
 			$px->bowl()->replace( $src, $key );
 		}
