@@ -17,7 +17,7 @@
     "repositories": [
         {
             "type": "git",
-            "url": "https://github.com/tomk79/php-amp-comvert.git"
+            "url": "https://github.com/tomk79/php-amp-convert.git"
         }
     ],
     "require": {
