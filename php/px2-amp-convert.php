@@ -15,6 +15,10 @@ class main{
 	 * @param object $json プラグインオプション
 	 */
 	public static function exec( $px, $json ){
+		if( !preg_match( '/(iPhone|iPod|(Android.*Mobile)|Windows Phone)/', $_SERVER['HTTP_USER_AGENT'] ) ){
+			// モバイルのUAでなければ、変換しない。
+			return true;
+		}
 
 		foreach( $px->bowl()->get_keys() as $key ){
 			$src = $px->bowl()->get_clean( $key );
