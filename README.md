@@ -37,6 +37,14 @@ $ composer update
 <?php
 	/* 中略 */
 
+	// funcs: Before content
+	$conf->funcs->before_content = [
+		// AMP変換ユーティリティオブジェクトを生成する
+		'tomk79\pickles2\ampConvert\main::create_px_amp_convert_utils()',
+	];
+
+	/* 中略 */
+
 	// processor
 	$conf->funcs->processor->html = array(
 
@@ -62,7 +70,11 @@ Pickles 2 の設定をJSON形式で編集している方は、`config.json` の�
 ```php
 <?php
 
+	$utils = $px->amp_convert_utils();
+	/*
+	// または
 	$utils = new \tomk79\pickles2\ampConvert\utils( $px );
+	*/
 
 	// パスの変換パターンを処理する
 	echo $utils->rewrite_path('/a/b/c/test.html', '{$dirname}/{$filename}.{$ext}'); // '/a/b/c/test.html'

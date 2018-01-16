@@ -21,6 +21,22 @@ class utils{
 	}
 
 	/**
+	 * USER_AGENT がモバイルのものか調べる
+	 * @param  string $user_agent 評価する USER_AGENT 文字列。省略時、 `$_SERVER['HTTP_USER_AGENT']` を評価対象とする。
+	 * @return boolean モバイルのUAなら `true`、 それ以外の場合には `false`
+	 */
+	public function is_mobile( $user_agent = null ){
+		if( @is_null($user_agent) ){
+			$user_agent = @$_SERVER['HTTP_USER_AGENT'];
+		}
+		if( !preg_match( '/(iPhone|iPod|(Android.*Mobile)|Windows Phone)/', $user_agent ) ){
+			// モバイルのUAでなければ、false を返す
+			return false;
+		}
+		return true;
+	}
+
+	/**
 	 * パスを変換する
 	 * @param  string $path     変換前のパス
 	 * @param  mixed  $pattern コールバック関数 または 変換ルール文字列

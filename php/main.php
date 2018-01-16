@@ -10,12 +10,29 @@ namespace tomk79\pickles2\ampConvert;
 class main{
 
 	/**
+	 * AMP変換ユーティリティオブジェクトを生成する
+	 * @param object $px Picklesオブジェクト
+	 * @param object $json プラグインオプション
+	 * @return boolean true
+	 */
+	public static function create_px_amp_convert_utils( $px, $json ){
+		$px->amp_convert_utils = new utils($px);
+		return true;
+	}
+
+	/**
 	 * 変換処理の実行
 	 * @param object $px Picklesオブジェクト
 	 * @param object $json プラグインオプション
+	 * @return boolean true
 	 */
 	public static function exec( $px, $json ){
-		if( !preg_match( '/(iPhone|iPod|(Android.*Mobile)|Windows Phone)/', $_SERVER['HTTP_USER_AGENT'] ) ){
+		$utils = @$px->amp_convert_utils;
+		if( !is_object($utils) ){
+			$utils = new utils( $px );
+		}
+
+		if( !$utils->is_mobile() ){
 			// モバイルのUAでなければ、変換しない。
 			return true;
 		}

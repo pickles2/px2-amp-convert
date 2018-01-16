@@ -97,6 +97,8 @@ return call_user_func( function(){
 		// PX=publish
 		'picklesFramework2\commands\publish::register' ,
 
+		// AMP変換ユーティリティオブジェクトを生成する
+		'tomk79\pickles2\ampConvert\main::create_px_amp_convert_utils()',
 	];
 
 
