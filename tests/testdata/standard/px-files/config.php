@@ -6,7 +6,18 @@ return call_user_func( function(){
 
 	// project
 	$conf->name = 'px2-amp-convert - test - standard'; // サイト名
-	$conf->domain = null; // ドメイン
+	/**
+	 * スキーマ
+	 * 本番環境のスキーマ
+	 * (例: http, https)
+	 */
+	$conf->scheme = 'http';
+	/**
+	 * ドメイン
+	 * 本番環境のドメイン
+	 * (例: www.example.com, 192.168.0.1, www.example.com:8080, etc...)
+	 */
+	$conf->domain = 'www.example.com';
 	$conf->path_controot = '/'; // コンテンツルートディレクトリ
 
 	// paths

@@ -41,6 +41,7 @@ class utilsTest extends PHPUnit_Framework_TestCase{
 		}), '/a/b/c/test.html.test' );
 		$this->assertEquals( $utils->rewrite_path('/a/b/c/test.html', 'function($path){return $path.\'.test2\';}'), '/a/b/c/test.html.test2' );
 		$this->assertEquals( $utils->rewrite_path('/a/b/c/test.html', null), '/a/b/c/test.html' );
+		$this->assertEquals( $utils->rewrite_path('/test.html', '{$dirname}/{$filename}.{$ext}'), '/test.html' );
 
 
 		// サブリクエストでキャッシュを消去

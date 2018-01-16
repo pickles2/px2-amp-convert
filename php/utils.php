@@ -37,6 +37,18 @@ class utils{
 	}
 
 	/**
+	 * amphtml のURLを取得する
+	 */
+	public function amphtml($pattern, $path = null){
+		if( is_null($path) ){
+			$path = $this->px->site()->get_current_page_info()['path'];
+		}
+		$rtn = $this->rewrite_path($path, $pattern);
+		$rtn = $this->px->canonical($rtn);
+		return $rtn;
+	}
+
+	/**
 	 * パスを変換する
 	 * @param  string $path     変換前のパス
 	 * @param  mixed  $pattern コールバック関数 または 変換ルール文字列
@@ -60,6 +72,10 @@ class utils{
 				'filename'=>basename($this->px->fs()->trim_extension($path)),
 				'ext'=>strtolower($this->px->fs()->get_extension($path)),
 			);
+			if($data['dirname'] == dirname($data['dirname'])){
+				// ルート階層にある場合、スラッシュが余計に増えてしまうので、消す。
+				$data['dirname'] = '';
+			}
 			$path_rewrited = str_replace( '{$dirname}', $data['dirname'], $path_rewrited );
 			$path_rewrited = str_replace( '{$filename}', $data['filename'], $path_rewrited );
 			$path_rewrited = str_replace( '{$ext}', $data['ext'], $path_rewrited );

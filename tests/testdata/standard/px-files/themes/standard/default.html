@@ -3,6 +3,12 @@
 	<head>
 		<meta charset="utf-8">
 		<title>standard - default.html</title>
+		<?php if( $px->amp_convert_utils->is_mobile() ){ ?>
+		<link rel="canonical" href="<?= htmlspecialchars($px->canonical()); ?>" />
+		<?php }else{ ?>
+		<link rel="amphtml" href="<?= htmlspecialchars($px->amp_convert_utils->amphtml('{$dirname}/{$filename}.amp.{$ext}')); ?>" />
+		<?php } ?>
+
 <?= $px->bowl()->get_clean('head') ?>
 	</head>
 	<body>

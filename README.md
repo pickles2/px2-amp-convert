@@ -70,11 +70,12 @@ Pickles 2 の設定をJSON形式で編集している方は、`config.json` の�
 ```php
 <?php
 
-	$utils = $px->amp_convert_utils();
-	/*
-	// または
-	$utils = new \tomk79\pickles2\ampConvert\utils( $px );
-	*/
+	$utils = $px->amp_convert_utils;
+
+	if(!is_object($utils)){
+		// または
+		$utils = new \tomk79\pickles2\ampConvert\utils( $px );
+	}
 
 	// パスの変換パターンを処理する
 	echo $utils->rewrite_path('/a/b/c/test.html', '{$dirname}/{$filename}.{$ext}'); // '/a/b/c/test.html'
