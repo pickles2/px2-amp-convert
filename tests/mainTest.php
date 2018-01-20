@@ -28,7 +28,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 
 		// トップページを実行 (mobile USER_AGENT)
 		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '-u', 'iPhone' , '/'] );
-		// var_dump($output);
+		var_dump($output);
 
 		$this->assertTrue( gettype($output) == gettype('') );
 

@@ -8,10 +8,12 @@
 		<?php }else{ ?>
 		<link rel="amphtml" href="<?= htmlspecialchars($px->amp_convert_utils->amphtml('{$dirname}/{$filename}.amp.{$ext}')); ?>" />
 		<?php } ?>
+		<link rel="stylesheet" href="<?= htmlspecialchars( $theme->files('/css/style.css') ); ?>" />
 
 <?= $px->bowl()->get_clean('head') ?>
 	</head>
 	<body>
+		<div class-"style-test">Style Test</div>
 		<div class="contents" <?= htmlspecialchars($theme->get_attr_bowl_name_by())?>="main">
 <?= $px->bowl()->get_clean() ?>
 		</div>

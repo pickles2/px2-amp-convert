@@ -43,7 +43,13 @@ class main{
 			// AMP 変換
 			$amp = new \tomk79\ampConvert\AMPConverter();
 			$amp->load($src);
-			$src = $amp->convert();
+			$src = $amp->convert(array(
+				'read_file'=>function($path) use ($px){
+					$path = $px->fs()->get_realpath($path, dirname($px->req()->get_request_file_path()));
+					$content = $px->internal_sub_request($path);
+					return $content;
+				}
+			));
 
 			$px->bowl()->replace( $src, $key );
 		}
