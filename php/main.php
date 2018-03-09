@@ -46,6 +46,7 @@ class main{
 			$src = $amp->convert(array(
 				'read_file'=>function($path) use ($px){
 					$path = $px->fs()->get_realpath($path, dirname($px->req()->get_request_file_path()));
+					$path = $px->fs()->normalize_path($path);
 					$content = $px->internal_sub_request($path);
 					return $content;
 				}

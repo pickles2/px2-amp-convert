@@ -72,7 +72,7 @@ class utils{
 				'filename'=>basename($this->px->fs()->trim_extension($path)),
 				'ext'=>strtolower($this->px->fs()->get_extension($path)),
 			);
-			if($data['dirname'] == dirname($data['dirname'])){
+			if($data['dirname'] == $this->px->fs()->normalize_path(dirname($data['dirname']))){
 				// ルート階層にある場合、スラッシュが余計に増えてしまうので、消す。
 				$data['dirname'] = '';
 			}
