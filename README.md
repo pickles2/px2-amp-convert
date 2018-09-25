@@ -9,9 +9,9 @@ Pickles 2 コンテンツを AMP に変換します。
 
 ## 導入手順 - Setup
 
-### 1. composer.json に tomk79/px2-amp-convert を追加
+### 1. composer.json に pickles2/px2-amp-convert を追加
 
-`require` の項目に、`tomk79/px2-amp-convert` を追加します。
+`require` の項目に、`pickles2/px2-amp-convert` を追加します。
 
 ```json
 {
@@ -90,7 +90,7 @@ echo $utils->rewrite_path('/a/b/c/test.html', function($path){
 
 ## 更新履歴 - Change log
 
-### tomk79/px2-amp-convert 0.2.0 (2018年9月25日)
+### pickles2/px2-amp-convert 0.2.0 (2018年9月25日)
 
 - Pickles 2 グループに移管した。
 
