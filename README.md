@@ -90,6 +90,10 @@ echo $utils->rewrite_path('/a/b/c/test.html', function($path){
 
 ## 更新履歴 - Change log
 
+### pickles2/px2-amp-convert 0.2.1 (リリース日未定)
+
+- `<link rel="stylesheet">` のリンク先が、 dataスキーマだった場合、 URLだった場合、 `$conf->path_controot` の設定が `/` 以外だった場合に対応できなかった不具合を修正。
+
 ### pickles2/px2-amp-convert 0.2.0 (2018年9月25日)
 
 - Pickles 2 グループに移管した。

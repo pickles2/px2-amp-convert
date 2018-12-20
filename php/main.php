@@ -45,6 +45,23 @@ class main{
 			$amp->load($src);
 			$src = $amp->convert(array(
 				'read_file'=>function($path) use ($px){
+					if( preg_match('/^data\:([a-zA-Z0-9\_\-]+\/[a-zA-Z0-9\_\-]+)\;base64,(.*)$/i', $path, $matched) ){
+						// dataスキーマの場合
+						$base64 = $matched[2];
+						$content = base64_decode($base64);
+						return $content;
+					}else if( preg_match('/^[a-zA-Z0-9]+\:/', $path) ){
+						// その他のスキーマの場合
+						$content = file_get_contents($path);
+						return $content;
+					}
+
+					// 内部のパスの場合
+					$path_controot = $px->conf()->path_controot;
+					$path = preg_replace( '/^\/+/', '/', $path );
+					$path = preg_replace( '/^'.preg_quote($path_controot, '/').'/', '', $path );
+					$path = preg_replace( '/^\/*/', '/', $path );
+
 					$path = $px->fs()->get_realpath($path, dirname($px->req()->get_request_file_path()));
 					$path = $px->fs()->normalize_path($path);
 					$content = $px->internal_sub_request($path);
