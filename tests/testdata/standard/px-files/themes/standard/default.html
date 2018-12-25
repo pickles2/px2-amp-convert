@@ -9,6 +9,8 @@
 		<link rel="amphtml" href="<?= htmlspecialchars($px->amp_convert_utils->amphtml('{$dirname}/{$filename}.amp.{$ext}')); ?>" />
 		<?php } ?>
 		<link rel="stylesheet" href="<?= htmlspecialchars( $theme->files('/css/style.css') ); ?>" />
+		<link rel="stylesheet" href="<?= htmlspecialchars( $theme->files('/css/style2.css') ); ?>" />
+		<link rel="stylesheet" href="data:text/css;base64,<?= base64_encode( '/* base64 */ .base64{color:#0f0;}' ); ?>" />
 
 <?= $px->bowl()->get_clean('head') ?>
 	</head>
