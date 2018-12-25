@@ -31,6 +31,10 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		// var_dump($output);
 
 		$this->assertTrue( gettype($output) == gettype('') );
+		$this->assertSame( preg_match('/'.preg_quote('.style-test {', '/').'/s', $output), 1 );
+		$this->assertSame( preg_match('/'.preg_quote('.style2{', '/').'/s', $output), 1 );
+		$this->assertSame( preg_match('/'.preg_quote('.base64{color:#0f0;}', '/').'/s', $output), 1 );
+		$this->assertSame( preg_match('/'.preg_quote('.cont-index-test-css', '/').'/s', $output), 1 );
 
 	}//testStandard()
 
@@ -49,6 +53,10 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		// var_dump($output);
 
 		$this->assertTrue( gettype($output) == gettype('') );
+		$this->assertSame( preg_match('/'.preg_quote('.subdir-style-test {', '/').'/s', $output), 1 );
+		$this->assertSame( preg_match('/'.preg_quote('.subdir-style2{', '/').'/s', $output), 1 );
+		$this->assertSame( preg_match('/'.preg_quote('.base64{color:#0f0;}', '/').'/s', $output), 1 );
+		$this->assertSame( preg_match('/'.preg_quote('.cont-index-test-css', '/').'/s', $output), 1 );
 
 	}//testSubdir()
 
