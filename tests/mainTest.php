@@ -20,19 +20,37 @@ class mainTest extends PHPUnit_Framework_TestCase{
 	/**
 	 * Px2を実行してみる
 	 */
-	public function testMain(){
+	public function testStandard(){
 
 		// トップページを実行
 		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php' , '/'] );
-		var_dump($output);
+		// var_dump($output);
 
 		// トップページを実行 (mobile USER_AGENT)
 		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '-u', 'iPhone' , '/'] );
-		var_dump($output);
+		// var_dump($output);
 
 		$this->assertTrue( gettype($output) == gettype('') );
 
-	}//testMain()
+	}//testStandard()
+
+
+	/**
+	 * サブディレクトリにセットアップされたPx2を実行してみる
+	 */
+	public function testSubdir(){
+
+		// トップページを実行
+		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/subdir/.px_execute.php' , '/'] );
+		// var_dump($output);
+
+		// トップページを実行 (mobile USER_AGENT)
+		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/subdir/.px_execute.php', '-u', 'iPhone' , '/'] );
+		// var_dump($output);
+
+		$this->assertTrue( gettype($output) == gettype('') );
+
+	}//testSubdir()
 
 
 	/**
@@ -41,6 +59,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 	public function testFinal(){
 
 		// 後始末
+		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/subdir/.px_execute.php' , '/?PX=clearcache'] );
 		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php' , '/?PX=clearcache'] );
 
 	}//testFinal()

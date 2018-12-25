@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>standard - default.html</title>
+		<?php if( $px->amp_convert_utils->is_mobile() ){ ?>
+		<link rel="canonical" href="<?= htmlspecialchars($px->canonical()); ?>" />
+		<?php }else{ ?>
+		<link rel="amphtml" href="<?= htmlspecialchars($px->amp_convert_utils->amphtml('{$dirname}/{$filename}.amp.{$ext}')); ?>" />
+		<?php } ?>
+		<link rel="stylesheet" href="<?= htmlspecialchars( $theme->files('/css/style.css') ); ?>" />
+		<link rel="stylesheet" href="<?= htmlspecialchars( $theme->files('/css/style2.css') ); ?>" />
+		<link rel="stylesheet" href="data:text/css;base64,<?= base64_encode( '/* base64 */ .base64{color:#0f0;}' ); ?>" />
+
+<?= $px->bowl()->get_clean('head') ?>
+	</head>
+	<body>
+		<div class-"style-test">Style Test</div>
+		<div class="contents" <?= htmlspecialchars($theme->get_attr_bowl_name_by())?>="main">
+<?= $px->bowl()->get_clean() ?>
+		</div>
+
+<?= $px->bowl()->get_clean('foot') ?>
+	</body>
+</html>
