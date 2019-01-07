@@ -37,7 +37,7 @@
     },
     "extra": {
         "px2package": {
-            "name": "tomk79/px2-amp-convert",
+            "name": "pickles2/px2-amp-convert",
             "type": "processor"
         }
     }
