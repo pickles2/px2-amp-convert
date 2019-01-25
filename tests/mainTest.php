@@ -47,12 +47,14 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		// トップページを実行
 		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/subdir/.px_execute.php' , '/'] );
 		// var_dump($output);
+		$this->assertSame( preg_match('/'.preg_quote('<img src="index_files/photo008.jpg" alt="Image" />', '/').'/s', $output), 1 );
 
 		// トップページを実行 (mobile USER_AGENT)
 		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/subdir/.px_execute.php', '-u', 'iPhone' , '/'] );
 		// var_dump($output);
 
 		$this->assertTrue( gettype($output) == gettype('') );
+		$this->assertSame( preg_match('/'.preg_quote('<amp-img src="index_files/photo008.jpg" alt="Image" width="800" height="600" layout="responsive"></amp-img>', '/').'/s', $output), 1 );
 		$this->assertSame( preg_match('/'.preg_quote('.subdir-style-test {', '/').'/s', $output), 1 );
 		$this->assertSame( preg_match('/'.preg_quote('.subdir-style2{', '/').'/s', $output), 1 );
 		$this->assertSame( preg_match('/'.preg_quote('.base64{color:#0f0;}', '/').'/s', $output), 1 );
