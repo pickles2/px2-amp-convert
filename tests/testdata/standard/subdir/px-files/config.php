@@ -11,7 +11,7 @@ return call_user_func( function(){
 	 * 本番環境のスキーマ
 	 * (例: http, https)
 	 */
-	$conf->scheme = 'http';
+	$conf->scheme = 'https';
 	/**
 	 * ドメイン
 	 * 本番環境のドメイン

@@ -61,6 +61,8 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		// var_dump($output);
 
 		$this->assertTrue( gettype($output) == gettype('') );
+		$this->assertSame( preg_match('/'.preg_quote('<amp-img src="https://github.com/pickles2/px2-amp-convert/blob/master/tests/testdata/standard/index_files/photo008.jpg?raw=true" alt="Remote Image 1" width="800" height="600" layout="responsive"></amp-img>', '/').'/s', $output), 1 );
+		$this->assertSame( preg_match('/'.preg_quote('<amp-img src="//github.com/pickles2/px2-amp-convert/blob/master/tests/testdata/standard/index_files/photo008.jpg?raw=true" alt="Remote Image 2" width="800" height="600" layout="responsive"></amp-img>', '/').'/s', $output), 1 );
 		$this->assertSame( preg_match('/'.preg_quote('<amp-img src="index_files/photo008sub.jpg" alt="Image 1" width="800" height="600" layout="responsive"></amp-img>', '/').'/s', $output), 1 );
 		$this->assertSame( preg_match('/'.preg_quote('<amp-img src="./index_files/photo008sub.jpg" alt="Image 2" width="800" height="600" layout="responsive"></amp-img>', '/').'/s', $output), 1 );
 		$this->assertSame( preg_match('/'.preg_quote('<amp-img src="/subdir/index_files/photo008sub.jpg" alt="Image 3" width="800" height="600" layout="responsive"></amp-img>', '/').'/s', $output), 1 );

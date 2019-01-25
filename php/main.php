@@ -50,6 +50,12 @@ class main{
 						$base64 = $matched[2];
 						$content = base64_decode($base64);
 						return $content;
+					}else if( preg_match('/^\/\//', $path) ){
+						// 現在のスキーマでコンテンツを取得する場合
+						// $conf->scheme を補完して取得する。
+						// (コマンドラインで実行されている場合など、環境変数から取得できない場合があるため)
+						$content = file_get_contents($px->conf()->scheme.':'.$path);
+						return $content;
 					}else if( preg_match('/^[a-zA-Z0-9]+\:/', $path) ){
 						// その他のスキーマの場合
 						$content = file_get_contents($path);
