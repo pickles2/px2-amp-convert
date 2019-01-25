@@ -57,10 +57,12 @@ class main{
 					}
 
 					// 内部のパスの場合
-					$path_controot = $px->conf()->path_controot;
-					$path = preg_replace( '/^\/+/', '/', $path );
-					$path = preg_replace( '/^'.preg_quote($path_controot, '/').'/', '', $path );
-					$path = preg_replace( '/^\/*/', '/', $path );
+					if( preg_match('/^\//', $path) ){
+						$path_controot = $px->conf()->path_controot;
+						$path = preg_replace( '/^\/+/', '/', $path );
+						$path = preg_replace( '/^'.preg_quote($path_controot, '/').'/', '', $path );
+						$path = preg_replace( '/^\/*/', '/', $path );
+					}
 
 					$path = $px->fs()->get_realpath($path, dirname($px->req()->get_request_file_path()));
 					$path = $px->fs()->normalize_path($path);
