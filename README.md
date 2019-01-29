@@ -90,7 +90,7 @@ echo $utils->rewrite_path('/a/b/c/test.html', function($path){
 
 ## 更新履歴 - Change log
 
-### pickles2/px2-amp-convert v0.2.2 (リリース日未定)
+### pickles2/px2-amp-convert v0.2.2 (2019年1月29日)
 
 - 相対パスで書かれた画像が `amp-img` 要素に置換されない事がある不具合を修正。
 - `//` から始まるリソースを扱えるようになった。
