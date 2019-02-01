@@ -90,6 +90,10 @@ echo $utils->rewrite_path('/a/b/c/test.html', function($path){
 
 ## 更新履歴 - Change log
 
+### pickles2/px2-amp-convert v0.2.3 (リリース日未定)
+
+- リソースの読み込み結果をキャッシュするようになった。繰り返し読み込むリソースが多い場合に、パフォーマンスが改善する。
+
 ### pickles2/px2-amp-convert v0.2.2 (2019年1月29日)
 
 - 相対パスで書かれた画像が `amp-img` 要素に置換されない事がある不具合を修正。

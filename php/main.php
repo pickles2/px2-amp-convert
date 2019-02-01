@@ -37,6 +37,8 @@ class main{
 			return true;
 		}
 
+		$resource_cache = new cache($px);
+
 		foreach( $px->bowl()->get_keys() as $key ){
 			$src = $px->bowl()->get_clean( $key );
 
@@ -44,21 +46,28 @@ class main{
 			$amp = new \tomk79\ampConvert\AMPConverter();
 			$amp->load($src);
 			$src = $amp->convert(array(
-				'read_file'=>function($path) use ($px){
+				'read_file'=>function($path) use ($px, $resource_cache){
+					$cache_key = $path;
+					if( $resource_cache->is_cache($cache_key) ){
+						return $resource_cache->get_cache_content($cache_key);
+					}
 					if( preg_match('/^data\:([a-zA-Z0-9\_\-]+\/[a-zA-Z0-9\_\-]+)\;base64,(.*)$/i', $path, $matched) ){
 						// dataスキーマの場合
 						$base64 = $matched[2];
 						$content = base64_decode($base64);
+						$resource_cache->save_cache_content($cache_key, $content);
 						return $content;
 					}else if( preg_match('/^\/\//', $path) ){
 						// 現在のスキーマでコンテンツを取得する場合
 						// $conf->scheme を補完して取得する。
 						// (コマンドラインで実行されている場合など、環境変数から取得できない場合があるため)
 						$content = file_get_contents($px->conf()->scheme.':'.$path);
+						$resource_cache->save_cache_content($cache_key, $content);
 						return $content;
 					}else if( preg_match('/^[a-zA-Z0-9]+\:/', $path) ){
 						// その他のスキーマの場合
 						$content = file_get_contents($path);
+						$resource_cache->save_cache_content($cache_key, $content);
 						return $content;
 					}
 
@@ -73,6 +82,7 @@ class main{
 					$path = $px->fs()->get_realpath($path, dirname($px->req()->get_request_file_path()));
 					$path = $px->fs()->normalize_path($path);
 					$content = $px->internal_sub_request($path);
+					$resource_cache->save_cache_content($cache_key, $content);
 					return $content;
 				}
 			));
