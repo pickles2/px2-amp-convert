@@ -46,6 +46,14 @@ class cache{
 	public function is_cache( $path ){
 		$index = $this->path2index($path);
 		if( !is_file( $this->realpath_amp_cache.$index ) ){
+			// キャッシュファイルが存在しない
+			return false;
+		}
+
+		$expire_limit = 30*60;//秒
+		$mtime = filemtime( $this->realpath_amp_cache.$index );
+		if( $mtime + $expire_limit < time() ){
+			// 有効期限切れ
 			return false;
 		}
 		return true;
