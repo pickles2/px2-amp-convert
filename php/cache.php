@@ -15,6 +15,9 @@ class cache{
 	/** キャッシュディレクトリ */
 	private $realpath_amp_cache;
 
+	/** controot */
+	private $realpath_controot;
+
 	/**
 	 * 変換処理の実行
 	 * @param object $px Picklesオブジェクト
@@ -26,6 +29,7 @@ class cache{
 		if( !is_dir( $this->realpath_amp_cache ) ){
 			$this->px->fs()->mkdir_r( $this->realpath_amp_cache );
 		}
+		$this->realpath_controot = $this->px->fs()->get_realpath($this->px->get_realpath_docroot().$this->px->get_path_controot());
 	}
 
 	/**
@@ -54,6 +58,30 @@ class cache{
 		$mtime = filemtime( $this->realpath_amp_cache.$index );
 		if( $mtime + $expire_limit < time() ){
 			// 有効期限切れ
+			return false;
+		}
+
+		if( preg_match('/^data\:([a-zA-Z0-9\_\-]+\/[a-zA-Z0-9\_\-]+)\;base64,(.*)$/s', $path) || preg_match('/^\/\//', $path) || preg_match('/^[a-zA-Z0-9]+\:/', $path) ){
+			// この時点でPickles2管理外のコンテンツであればキャッシュ成立
+			return true;
+		}
+
+		$content_file_mtime = null;
+		if( is_file($this->realpath_controot.$path) ){
+			$content_file_mtime = filemtime($this->realpath_controot.$path);
+		}else{
+			$realpath_dir = dirname($this->realpath_controot.$path);
+			$basename = basename($this->realpath_controot.$path);
+			$processors = array_keys( get_object_vars( $this->px->conf()->funcs->processor ) );
+			foreach( $processors as $tmp_ext ){
+				if( $this->px->fs()->is_file( $this->realpath_controot.$path.'.'.$tmp_ext ) ){
+					$content_file_mtime = filemtime($this->realpath_controot.$path.'.'.$tmp_ext);
+					break;
+				}
+			}
+		}
+		if( !is_null($content_file_mtime) && $content_file_mtime > $mtime ){
+			// コンテンツファイルが更新されている
 			return false;
 		}
 		return true;
