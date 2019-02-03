@@ -54,6 +54,12 @@ class cache{
 			return false;
 		}
 
+		if( !$this->px->is_publish_tool() ){
+			// パブリッシュ以外のアクセス(プレビュー)時には、
+			// キャッシュを使わない。
+			return false;
+		}
+
 		$expire_limit = 30*60;//秒
 		$mtime = filemtime( $this->realpath_amp_cache.$index );
 		if( $mtime + $expire_limit < time() ){
