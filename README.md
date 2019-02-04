@@ -90,7 +90,7 @@ echo $utils->rewrite_path('/a/b/c/test.html', function($path){
 
 ## 更新履歴 - Change log
 
-### pickles2/px2-amp-convert v0.2.3 (リリース日未定)
+### pickles2/px2-amp-convert v0.2.3 (2019年2月4日)
 
 - リソースの読み込み結果をキャッシュするようになった。繰り返し読み込むリソースが多い場合に、パブリッシュのパフォーマンスが改善する。
 
