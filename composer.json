@@ -16,9 +16,10 @@
     } ,
     "repositories": [
     ],
+    "minimum-stability": "dev",
     "require": {
         "php": ">=5.5.0",
-        "tomk79/amp-convert": "^0.1"
+        "tomk79/amp-convert": "~0.1"
     },
     "require-dev": {
         "phpunit/phpunit": "4.1.*" ,

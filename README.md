@@ -11,21 +11,8 @@ Pickles 2 コンテンツを AMP に変換します。
 
 ### 1. composer.json に pickles2/px2-amp-convert を追加
 
-`require` の項目に、`pickles2/px2-amp-convert` を追加します。
-
-```json
-{
-	"require": {
-		"pickles2/px2-amp-convert": "^0.2"
-	},
-}
 ```
-
-
-追加したら、`composer update` を実行して変更を反映することを忘れずに。
-
-```bash
-$ composer update
+$ composer require pickles2/px2-amp-convert
 ```
 
 
@@ -89,6 +76,10 @@ echo $utils->rewrite_path('/a/b/c/test.html', function($path){
 
 
 ## 更新履歴 - Change log
+
+### pickles2/px2-amp-convert v0.3.0 (リリース日未定)
+
+- Update libraries: `tomk79/amp-convert` to `~0.1`, `lullabot/amp` to `^2.0`
 
 ### pickles2/px2-amp-convert v0.2.3 (2019年2月4日)
 
