@@ -77,7 +77,7 @@ echo $utils->rewrite_path('/a/b/c/test.html', function($path){
 
 ## 更新履歴 - Change log
 
-### pickles2/px2-amp-convert v0.3.0 (リリース日未定)
+### pickles2/px2-amp-convert v0.3.0 (2020年10月17日)
 
 - Update libraries: `tomk79/amp-convert` to `~0.1`, `lullabot/amp` to `^2.0`
 
